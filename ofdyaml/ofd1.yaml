@@ -2,19 +2,19 @@
 apiVersion: "apps/v1"
 kind: "Deployment"
 metadata:
-  name: "ofdservice1"
+  name: "ofdfront"
   namespace: "default"
   labels:
-    app: "ofdservice1"
+    app: "ofdfront"
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: "ofdservice1"
+      app: "ofdfront"
   template:
     metadata:
       labels:
-        app: "ofdservice1"
+        app: "ofdfront"
     spec:
       containers:
       - name: "ofd-sha256-1"
@@ -23,14 +23,14 @@ spec:
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"
 metadata:
-  name: "ofdservice1-hpa-zqur"
+  name: "ofdfront-hpa-1i0i"
   namespace: "default"
   labels:
-    app: "ofdservice1"
+    app: "ofdfront"
 spec:
   scaleTargetRef:
     kind: "Deployment"
-    name: "ofdservice1"
+    name: "ofdfront"
     apiVersion: "apps/v1"
   minReplicas: 1
   maxReplicas: 5
